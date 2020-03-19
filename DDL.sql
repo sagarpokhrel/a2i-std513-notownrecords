@@ -64,8 +64,10 @@ CREATE TABLE `songs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
-  `author` varchar(50) NOT NULL,
+  `author_id` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `songs_FK_album` (`album_id`),
-  CONSTRAINT `songs_FK_album` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON UPDATE CASCADE
+  KEY `songs_FK_musician` (`author_id`),
+  CONSTRAINT `songs_FK_album` FOREIGN KEY (`album_id`) REFERENCES `albums` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `songs_FK_musician` FOREIGN KEY (`author_id`) REFERENCES `musicians` (`ssn`) ON UPDATE CASCADE
 );
