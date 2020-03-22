@@ -26,3 +26,16 @@ BEGIN
 	group by s.title, a.title
 	order by musicians desc;
 END
+
+-- musicians with most played songs
+CREATE PROCEDURE `NotownRecords`.`listMusiciansWithMostPlayedSongs`()
+BEGIN
+	select m.ssn,
+		m.name, 
+		a.contact,
+		count(si.song_id) number_of_songs_played
+	from musicians m 
+		join song_instruments si on m.ssn = si.musician
+		join addresses a on m.address_id = a.id
+	group by m.ssn;
+END
