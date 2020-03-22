@@ -14,12 +14,15 @@ END
 
 
 -- list of songs and names of the musicians that played
-select a.title album,
-	s.title track,
-	COALESCE (group_concat(m.name), '<none recorded>') as musicians
-from songs s 
-	left join song_instruments si on s.id = si.song_id
-	left join musicians m on si.musician = m.ssn
-	join albums a on s.album_id = a.id 
-group by s.title, a.title
-order by musicians desc;
+CREATE PROCEDURE `NotownRecords`.`listSongsWithMusicians`()
+BEGIN
+	select a.title album,
+		s.title track,
+		COALESCE (group_concat(m.name), '<none recorded>') as musicians
+	from songs s 
+		left join song_instruments si on s.id = si.song_id
+		left join musicians m on si.musician = m.ssn
+		join albums a on s.album_id = a.id 
+	group by s.title, a.title
+	order by musicians desc;
+END
