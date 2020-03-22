@@ -5,8 +5,7 @@ CREATE TABLE `addresses` (
   `location` varchar(255) NOT NULL,
   `contact` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `location` (`location`),
-  UNIQUE KEY `contact` (`contact`)
+  UNIQUE KEY `addresses_UN` (`location`,`contact`)
 );
 
 
