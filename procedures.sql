@@ -37,5 +37,6 @@ BEGIN
 	from musicians m 
 		join song_instruments si on m.ssn = si.musician
 		join addresses a on m.address_id = a.id
-	group by m.ssn;
+	group by m.ssn
+	order by number_of_songs_played desc;
 END
